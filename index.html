@@ -111,6 +111,7 @@
       ["seguir", "to follow; to continue", ["sigo", "seguimos", "sigues", "", "sigue", "siguen"]],
       ["vestirse", "to get dressed", ["me visto", "nos vestimos", "te vistes", "", "se viste", "se visten"]]
     ];
+    verbs.sort((a, b) => a[0].localeCompare(b[0], 'es'));
     const pages = document.getElementById('pages');
     const cards = [];
     for (const [infinitive, meaning, forms] of verbs) {
