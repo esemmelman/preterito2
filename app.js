@@ -127,7 +127,9 @@ window.selectPage = index => {
     if (i === index) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
   });
   alignRecorder();
-  playRecording(openingRecording || preview);
+  el('player').pause();
+  el('player').currentTime = 0;
+  el('replay').hidden = !el('player').getAttribute('src');
 };
 el('record').onclick = async () => {
   if (recorder?.state === 'recording') {
@@ -213,7 +215,7 @@ async function loadOpeningRecording(session) {
     if (signed.error) throw signed.error;
     if (ticket !== openingLoad) return;
     openingRecording = signed.data.signedUrl;
-    // The bundled original already started on arrival; use the cloud copy on future selections.
+    // Keep the saved example available without starting playback on arrival.
   } catch (error) {
     openingRecording = originalRecording;
   }

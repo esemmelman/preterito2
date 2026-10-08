@@ -1,6 +1,6 @@
 # Spanish preterite 2 — speaking and large print
 
-Select an infinitive button in the left frame to show its conjugations and play your saved opening recording. The verb links use the same font size as the conjugations. Use your browser's Print command to print every page in bold 44-point type on US Letter paper.
+Select an infinitive button in the left frame to show its conjugations. Opening the app or selecting a page does not start audio playback. The verb links use the same font size as the conjugations. Use your browser's Print command to print every page in bold 44-point type on US Letter paper.
 
 The 15 verb pages follow the supplied order: hacer, dar, ver, ir y ser, tener, andar, estar, poder, poner, saber, venir, querer, caber, decir, traer. The second-person plural cell is intentionally blank on every page.
 
@@ -8,7 +8,7 @@ The 15 verb pages follow the supplied order: hacer, dar, ver, ir y ser, tener, a
 
 Each page contains one infinitive and its conjugations. Use the Record button to the right of the center page, aligned horizontally with its heading. The center page goes blank while you speak and the button changes to Stop. After ten seconds without microphone sound, recording stops automatically. You can also select Stop to restore the page immediately. After one second, your recording plays. Playback stops after ten seconds of continuous silence or stalled audio. If your browser blocks automatic sound, a Play button appears.
 
-The reference lesson's original recording is copied unchanged as `opening-recording.webm` (12.42 seconds). It was recovered from the browser cache and verified against the original upload checksum. It plays when the app opens and when a page is selected, without sign-in. Browser autoplay restrictions may require tapping Play. An existing signed-in Supabase session also preserves a separate cloud copy under lesson ID `preterito2-v1` and the `opening-example` key.
+The reference lesson's original recording is copied unchanged as `opening-recording.webm` (12.42 seconds). It was recovered from the browser cache and verified against the original upload checksum. It does not play automatically when the app opens or a page is selected. An existing signed-in Supabase session also preserves a separate cloud copy under lesson ID `preterito2-v1` and the `opening-example` key.
 
 Practice takes remain separate from that opening recording. They play one second after Stop and stay only in this browser session. They are not uploaded or saved, and recording practice requires no sign-in.
 
