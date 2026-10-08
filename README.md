@@ -1,8 +1,8 @@
-# Spanish preterite 2 — speaking and large print
+# Spanish present stem-changing verbs — speaking and large print
 
 Select an infinitive button in the left frame to show its conjugations. Opening the app or selecting a page does not start audio playback. The verb links use the same font size as the conjugations. Use your browser's Print command to print every page in bold 44-point type on US Letter paper.
 
-The 15 verb pages follow the supplied order: hacer, dar, ver, ir y ser, tener, andar, estar, poder, poner, saber, venir, querer, caber, decir, traer. The second-person plural cell is intentionally blank on every page.
+The 31 present-tense verb pages follow the supplied order: perder, empezar, querer, preferir, pensar, divertirse, despertarse, sentirse, mentir, cerrar, comenzar, entender, poder, jugar, contar, costar, encontrar, recordar, volar, dormir, volver, devolver, acostarse, almorzar, pedir, servir, repetir, reír, sonreír, seguir, vestirse. The supplied spelling “repertir” is corrected to “repetir.” The second-person plural cell is intentionally blank on every page, matching preterito2.
 
 ## Speaking practice
 

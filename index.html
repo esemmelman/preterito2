@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Spanish Preterite — Large Print</title>
+  <title>Spanish Present Stem-Changing Verbs — Large Print</title>
   <style>
     * { box-sizing: border-box; }
     body { margin: 0; background: #eee; color: #111; font-family: Arial, Helvetica, sans-serif; }
@@ -79,21 +79,37 @@
   (() => {
     // Rows pair singular and plural forms in conventional conjugation-table order.
     const verbs = [
-      ['hacer', 'to do; to make', ['hice', 'hicimos', 'hiciste', '', 'hizo', 'hicieron']],
-      ['dar', 'to give', ['di', 'dimos', 'diste', '', 'dio', 'dieron']],
-      ['ver', 'to see', ['vi', 'vimos', 'viste', '', 'vio', 'vieron']],
-      ['ir y ser', 'to go; to be', ['fui', 'fuimos', 'fuiste', '', 'fue', 'fueron']],
-      ['tener', 'to have', ['tuve', 'tuvimos', 'tuviste', '', 'tuvo', 'tuvieron']],
-      ['andar', 'to walk', ['anduve', 'anduvimos', 'anduviste', '', 'anduvo', 'anduvieron']],
-      ['estar', 'to be', ['estuve', 'estuvimos', 'estuviste', '', 'estuvo', 'estuvieron']],
-      ['poder', 'to be able to; can', ['pude', 'pudimos', 'pudiste', '', 'pudo', 'pudieron']],
-      ['poner', 'to put', ['puse', 'pusimos', 'pusiste', '', 'puso', 'pusieron']],
-      ['saber', 'to know', ['supe', 'supimos', 'supiste', '', 'supo', 'supieron']],
-      ['venir', 'to come', ['vine', 'vinimos', 'viniste', '', 'vino', 'vinieron']],
-      ['querer', 'to want', ['quise', 'quisimos', 'quisiste', '', 'quiso', 'quisieron']],
-      ['caber', 'to fit', ['cupe', 'cupimos', 'cupiste', '', 'cupo', 'cupieron']],
-      ['decir', 'to say; to tell', ['dije', 'dijimos', 'dijiste', '', 'dijo', 'dijeron']],
-      ['traer', 'to bring', ['traje', 'trajimos', 'trajiste', '', 'trajo', 'trajeron']]
+      ["perder", "to lose", ["pierdo", "perdemos", "pierdes", "", "pierde", "pierden"]],
+      ["empezar", "to begin", ["empiezo", "empezamos", "empiezas", "", "empieza", "empiezan"]],
+      ["querer", "to want", ["quiero", "queremos", "quieres", "", "quiere", "quieren"]],
+      ["preferir", "to prefer", ["prefiero", "preferimos", "prefieres", "", "prefiere", "prefieren"]],
+      ["pensar", "to think", ["pienso", "pensamos", "piensas", "", "piensa", "piensan"]],
+      ["divertirse", "to have fun", ["me divierto", "nos divertimos", "te diviertes", "", "se divierte", "se divierten"]],
+      ["despertarse", "to wake up", ["me despierto", "nos despertamos", "te despiertas", "", "se despierta", "se despiertan"]],
+      ["sentirse", "to feel", ["me siento", "nos sentimos", "te sientes", "", "se siente", "se sienten"]],
+      ["mentir", "to lie", ["miento", "mentimos", "mientes", "", "miente", "mienten"]],
+      ["cerrar", "to close", ["cierro", "cerramos", "cierras", "", "cierra", "cierran"]],
+      ["comenzar", "to begin", ["comienzo", "comenzamos", "comienzas", "", "comienza", "comienzan"]],
+      ["entender", "to understand", ["entiendo", "entendemos", "entiendes", "", "entiende", "entienden"]],
+      ["poder", "to be able to; can", ["puedo", "podemos", "puedes", "", "puede", "pueden"]],
+      ["jugar", "to play", ["juego", "jugamos", "juegas", "", "juega", "juegan"]],
+      ["contar", "to count; to tell", ["cuento", "contamos", "cuentas", "", "cuenta", "cuentan"]],
+      ["costar", "to cost", ["cuesto", "costamos", "cuestas", "", "cuesta", "cuestan"]],
+      ["encontrar", "to find", ["encuentro", "encontramos", "encuentras", "", "encuentra", "encuentran"]],
+      ["recordar", "to remember", ["recuerdo", "recordamos", "recuerdas", "", "recuerda", "recuerdan"]],
+      ["volar", "to fly", ["vuelo", "volamos", "vuelas", "", "vuela", "vuelan"]],
+      ["dormir", "to sleep", ["duermo", "dormimos", "duermes", "", "duerme", "duermen"]],
+      ["volver", "to return", ["vuelvo", "volvemos", "vuelves", "", "vuelve", "vuelven"]],
+      ["devolver", "to give back", ["devuelvo", "devolvemos", "devuelves", "", "devuelve", "devuelven"]],
+      ["acostarse", "to go to bed", ["me acuesto", "nos acostamos", "te acuestas", "", "se acuesta", "se acuestan"]],
+      ["almorzar", "to eat lunch", ["almuerzo", "almorzamos", "almuerzas", "", "almuerza", "almuerzan"]],
+      ["pedir", "to ask for; to request", ["pido", "pedimos", "pides", "", "pide", "piden"]],
+      ["servir", "to serve", ["sirvo", "servimos", "sirves", "", "sirve", "sirven"]],
+      ["repetir", "to repeat", ["repito", "repetimos", "repites", "", "repite", "repiten"]],
+      ["reír", "to laugh", ["río", "reímos", "ríes", "", "ríe", "ríen"]],
+      ["sonreír", "to smile", ["sonrío", "sonreímos", "sonríes", "", "sonríe", "sonríen"]],
+      ["seguir", "to follow; to continue", ["sigo", "seguimos", "sigues", "", "sigue", "siguen"]],
+      ["vestirse", "to get dressed", ["me visto", "nos vestimos", "te vistes", "", "se viste", "se visten"]]
     ];
     const pages = document.getElementById('pages');
     const cards = [];
