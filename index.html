@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spanish Preterite — Large Print</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #eee; color: #111; font-family: Arial, Helvetica, sans-serif; }
+    button { padding: 12px 24px; font: inherit; cursor: pointer; }
+    .sheet { background: white; width: 7.5in; min-height: 10in; margin: 20px auto; padding: .2in; }
+    .verb { padding: .15in 0; font-size: 44pt; font-weight: 700; }
+    .verb + .verb { border-top: 2px solid #999; padding-top: .35in; }
+    h1 { font-size: inherit; margin: 0 0 64px; line-height: 1.2; overflow-wrap: anywhere; text-align: center; text-decoration: underline; text-underline-offset: .1em; }
+    .forms { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px 24px; font-size: inherit; line-height: 1.2; }
+    .forms > div { overflow-wrap: anywhere; }
+    :root { --reading-size: 44pt; }
+    [hidden] { display: none !important; }
+    .layout { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 20px; align-items: start; }
+    .page-nav { position: sticky; top: 0; max-height: 100vh; overflow-y: auto; background: #fff; padding: 12px; border-right: 2px solid #999; }
+    .page-nav button { display: block; width: 100%; text-align: left; font-size: var(--reading-size); font-weight: 700; margin-bottom: 8px; overflow-wrap: anywhere; }
+    .page-nav button[aria-current="page"] { background: #173d65; color: white; }
+    .page-nav button:disabled { opacity: 1; color: #111; }
+    .page-nav button[aria-current="page"]:disabled { color: white; }
+    .sheet { max-width: 100%; }
+    .account { font-size: 22px; padding: 16px; background: white; margin: 12px; }
+    .account button { font-size: 22px; margin: 4px; }
+    input { font: inherit; padding: 8px; max-width: 100%; }
+    label { display: inline-block; margin: 8px; }
+    .center-frame { display: grid; grid-template-columns: minmax(0, 7.5in) max-content; gap: 60px; justify-content: center; align-items: start; padding: 0 16px; }
+    #pages { min-width: 0; position: relative; }
+    @media screen {
+      #pages.recording-blank::after { content: ''; position: absolute; inset: 0; background: white; z-index: 1; }
+      #pages.recording-blank > .sheet { visibility: hidden !important; }
+    }
+    .recording-side { margin-top: var(--recording-top, 100px); width: max-content; max-width: 230px; font-size: 20px; }
+    #record { font-size: var(--reading-size); font-weight: 700; width: 100%; display: flex; align-items: center; justify-content: center; text-align: center; border: 2px solid #777; border-top-color: #fff; border-left-color: #fff; border-radius: 8px; background: linear-gradient(#fff, #d5d5d5); box-shadow: 0 5px 0 #888, 0 8px 12px #0003; }
+    #record[aria-pressed="true"] { background: linear-gradient(#c92e2e, #8d1111); color: white; }
+    #record:active:not(:disabled) { transform: translateY(4px); box-shadow: 0 1px 0 #888, 0 3px 5px #0003; }
+    #record:focus-visible { outline: 3px solid #173d65; outline-offset: 6px; }
+    .recording-side button { margin-bottom: 12px; }
+    #status { overflow-wrap: anywhere; }
+    #status.quiet { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    @media screen and (max-width: 650px) { .center-frame { gap: 8px; padding: 0 4px; } .recording-side { max-width: 112px; font-size: 16px; } #record { padding: 10px 4px; } }
+    @media screen and (max-width: 1100px) { :root { --reading-size: 42px; } .verb { font-size: var(--reading-size); } .sheet { width: 100%; } }
+    @media screen and (max-width: 650px) { :root { --reading-size: 32px; } .layout { gap: 6px; grid-template-columns: 140px minmax(0, 1fr); } .page-nav { padding: 4px; } .page-nav button { padding: 8px 4px; } .sheet { padding: 12px; } .verb { font-size: var(--reading-size); } .forms { gap: 16px 8px; } h1 { margin-bottom: 32px; } }
+    @page { size: letter; margin: .5in; }
+    @media print {
+      body { background: white; }
+      .page-nav, .recording-side, .account { display: none; }
+      .center-frame { display: block; padding: 0; }
+      #pages { visibility: visible !important; }
+      .layout { display: block; }
+      .sheet[hidden] { display: block !important; }
+      .sheet { width: auto; min-height: 0; height: 10in; margin: 0; padding: .2in; break-after: page; }
+      .sheet:last-child { break-after: auto; }
+      .verb { break-inside: avoid; }
+    }
+    @media screen and (max-width: 750px) {
+      .sheet { width: calc(100% - 24px); min-height: 0; padding: 24px; }
+      .verb { height: auto; padding-bottom: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <nav id="page-nav" class="page-nav" aria-label="Verbos"></nav>
+    <div class="center-frame">
+      <main id="pages"></main>
+      <aside class="recording-side" lang="en" aria-label="Recording">
+        <button id="record" disabled aria-pressed="false">Record</button>
+        <button id="replay" hidden>Play</button>
+        <p id="status" class="quiet" role="status" aria-live="polite">Select Record to practice.</p>
+      </aside>
+      <audio id="player" hidden></audio>
+    </div>
+  </div>
+  <script>
+  (() => {
+    // Rows pair singular and plural forms in conventional conjugation-table order.
+    const verbs = [
+      ['hacer', 'to do; to make', ['hice', 'hicimos', 'hiciste', '', 'hizo', 'hicieron']],
+      ['dar', 'to give', ['di', 'dimos', 'diste', '', 'dio', 'dieron']],
+      ['ver', 'to see', ['vi', 'vimos', 'viste', '', 'vio', 'vieron']],
+      ['ir y ser', 'to go; to be', ['fui', 'fuimos', 'fuiste', '', 'fue', 'fueron']],
+      ['tener', 'to have', ['tuve', 'tuvimos', 'tuviste', '', 'tuvo', 'tuvieron']],
+      ['andar', 'to walk', ['anduve', 'anduvimos', 'anduviste', '', 'anduvo', 'anduvieron']],
+      ['estar', 'to be', ['estuve', 'estuvimos', 'estuviste', '', 'estuvo', 'estuvieron']],
+      ['poder', 'to be able to; can', ['pude', 'pudimos', 'pudiste', '', 'pudo', 'pudieron']],
+      ['poner', 'to put', ['puse', 'pusimos', 'pusiste', '', 'puso', 'pusieron']],
+      ['saber', 'to know', ['supe', 'supimos', 'supiste', '', 'supo', 'supieron']],
+      ['venir', 'to come', ['vine', 'vinimos', 'viniste', '', 'vino', 'vinieron']],
+      ['querer', 'to want', ['quise', 'quisimos', 'quisiste', '', 'quiso', 'quisieron']],
+      ['caber', 'to fit', ['cupe', 'cupimos', 'cupiste', '', 'cupo', 'cupieron']],
+      ['decir', 'to say; to tell', ['dije', 'dijimos', 'dijiste', '', 'dijo', 'dijeron']],
+      ['traer', 'to bring', ['traje', 'trajimos', 'trajiste', '', 'trajo', 'trajeron']]
+    ];
+    const pages = document.getElementById('pages');
+    const cards = [];
+    for (const [infinitive, meaning, forms] of verbs) {
+        // Leave the second-person plural cell blank.
+        const card = document.createElement('article');
+        card.className = 'verb';
+        const heading = document.createElement('h1');
+        heading.append(document.createTextNode(infinitive + ' - '));
+        const definition = document.createElement('span');
+        definition.lang = 'en';
+        definition.textContent = meaning;
+        heading.append(definition);
+        const grid = document.createElement('div');
+        grid.className = 'forms';
+        for (const form of forms) {
+          const cell = document.createElement('div');
+          cell.textContent = form;
+          grid.append(cell);
+        }
+        card.append(heading, grid);
+        cards.push(card);
+    }
+    // Each infinitive and its conjugations get their own screen and print page.
+    for (const card of cards) {
+      const sheet = document.createElement('section');
+      sheet.className = 'sheet';
+      sheet.append(card);
+      pages.append(sheet);
+    }
+    const sheets = [...pages.children];
+    sheets.forEach((sheet, index) => {
+      // Recordings follow verb groups, so resizing a device never changes their identity.
+      sheet.dataset.pageKey = [...sheet.querySelectorAll('h1')].map(h => h.firstChild.textContent.trim().replace(/ -$/, '')).join('_');
+      const button = document.createElement('button');
+      button.textContent = sheet.dataset.pageKey;
+      button.addEventListener('click', () => window.selectPage(index));
+      document.getElementById('page-nav').append(button);
+      sheet.hidden = index !== 0;
+    });
+    window.lessonSheets = sheets;
+  })();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.3/dist/umd/supabase.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js?v=2.9"></script>
+</body>
+</html>
